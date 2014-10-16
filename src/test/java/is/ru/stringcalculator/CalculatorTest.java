@@ -23,12 +23,12 @@ public class CalculatorTest {
 	}
 
 	@Test
-	public void testMultipleNumbers(){
+	public void testMultipleNumber1(){
 		assertEquals(6, Calculator.add("1,2,3"));
 	}
 
 	@Test
-	public void testMultipleNumbers(){
+	public void testMultipleNumbers2(){
 		assertEquals(10, Calculator.add("1,1,1,1,1,1,1,1,1,1"));
 	}
 
