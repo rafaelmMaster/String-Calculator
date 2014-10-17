@@ -63,8 +63,13 @@ public class CalculatorTest {
 	}
 
 	@Test
-	public void testAllNumbersOver1000Ignored() {
+	public void testAllNumbersOver1000Ignored1() {
 		assertEquals(2, Calculator.add("1001,2"));
+	}
+
+	@Test
+	public void testAllNumbersOver1000Ignored2() {
+		assertEquals(999, Calculator.add("1001,999"));
 	}
 
 }
