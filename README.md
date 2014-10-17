@@ -1,4 +1,8 @@
 String-Calculator
 =================
-
-Just string calculator in java
+Test Driven Development
+        Design  
+      /       \
+    Test      Test
+      \       /    
+      Implement
