@@ -33,6 +33,23 @@ public class Calculator {
 	}
 	
 	private static int sum(String[] numbers){
+		if (containsNegatives(numbers)) {
+			int[] negatives = new int[numbers.length];
+			int x = 0;
+
+			for (int i = 0; i < numbers.length; i++) {
+				if (toInt(numbers[i]) < 0) {
+					negatives[x] = toInt(numbers[i]);
+					x++;
+				}
+			}
+			String neg = Integer.toString(negatives[0]);
+			for (int j = 1; j < x; j++) {
+				neg += "," + Integer.toString(negatives[j]); 
+			}
+			throw new RuntimeException("Negatives not allowed: " + neg);
+		}
+		
 		int total = 0;
 		for(String number : numbers) {
 			if (isNegative(number)) {
@@ -41,6 +58,15 @@ public class Calculator {
 			total += toInt(number);
 		}
 		return total;
+	}
+	
+	private static boolean containsNegatives(String[] numbers) {
+		for(String num : numbers) {
+			if (toInt(num) < 0) {
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	private static boolean isNegative(String numbers) {
