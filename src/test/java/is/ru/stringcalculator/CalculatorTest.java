@@ -62,4 +62,9 @@ public class CalculatorTest {
 		}
 	}
 
+	@Test
+	public void testAllNumbersOver1000Ignored() {
+		assertEquals(2, Calculator.add("1001,2"));
+	}
+
 }
