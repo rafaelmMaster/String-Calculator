@@ -29,7 +29,7 @@ public class Calculator {
 			match.matches();
 			return match.group(2).split(match.group(1));
 		}
-		return numbers.split(",|\n");
+		return numbers.split(delimiter);
 	}
 	
 	private static int sum(String[] numbers){
