@@ -33,6 +33,11 @@ public class Calculator {
 	}
 	
 	private static int sum(String[] numbers){
+		 for (String num : numbers) {
+			if (toInt(num) < 0) {
+				throw new RuntimeException("Negatives not allowed: " + num);
+			}
+		}
 		int total = 0;
 		for(String number : numbers) {
 			total += toInt(number);
