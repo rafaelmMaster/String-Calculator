@@ -39,9 +39,6 @@ public class Calculator {
 		
 		int total = 0;
 		for(String number : numbers) {
-			if (isNegative(number)) {
-				throw new RuntimeException("Negatives not allowed: " + number);
-			}
 			total += toInt(number);
 		}
 		return total;
