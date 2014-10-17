@@ -1,8 +1,4 @@
 String-Calculator
 =================
-Test Driven Development
-        Design  
-      /       \
-    Test      Test
-      \       /    
-      Implement
+Test Driven Development:
+        Design -> Test -> Implement -> Test
