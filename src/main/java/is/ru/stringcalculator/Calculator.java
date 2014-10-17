@@ -1,5 +1,8 @@
 package is.ru.stringcalculator;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class Calculator {
 	
 	private final static String delimiter = ",|\n";
@@ -20,6 +23,12 @@ public class Calculator {
 	}
 
 	private static String[] splitNumbers(String numbers){
+		if (numbers.startsWith("//")) {
+			Matcher match;
+			match = Pattern.compile("//(.)\n(.*)").matcher(numbers);
+			match.matches();
+			return match.group(2).split(match.group(1));
+		}
 		return numbers.split(",|\n");
 	}
 	
