@@ -33,15 +33,17 @@ public class Calculator {
 	}
 	
 	private static int sum(String[] numbers){
-		 for (String num : numbers) {
-			if (toInt(num) < 0) {
-				throw new RuntimeException("Negatives not allowed: " + num);
-			}
-		}
 		int total = 0;
 		for(String number : numbers) {
+			if (isNegative(number)) {
+				throw new RuntimeException("Negatives not allowed: " + number);
+			}
 			total += toInt(number);
 		}
 		return total;
+	}
+	
+	private static boolean isNegative(String numbers) {
+		return toInt(numbers) < 0;
 	}
 }
