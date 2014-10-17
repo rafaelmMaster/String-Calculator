@@ -2,12 +2,14 @@ package is.ru.stringcalculator;
 
 public class Calculator {
 	
+	private final static String delimiter = ",|\n";
+	
 	public static int add(String text) {
 		
 		if (text.isEmpty()) {
 			return 0;
 		}
-		else if (text.contains(",|\n")){
+		else if (text.contains(delimiter)){
 			return sum(splitNumbers(text));
 		}
 		return sum(splitNumbers(text));
