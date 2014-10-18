@@ -5,31 +5,40 @@ import java.util.regex.Pattern;
 
 public class Calculator {
 	
-	private final static String delimiter = ",|\n";
-	
 	public static int add(String text) {
+		
+		String regex = ",";
 		
 		if (text.isEmpty()) {
 			return 0;
 		}
-		else if (text.contains(delimiter)){
-			return sum(splitNumbers(text));
+		if(text.startsWith("//")){
+			if(text.charAt(2) == '[') {
+				for (int j = 2; j < text.length(); j++) {
+					if (text.charAt(j) == ']') {
+						regex = text.substring(j-3, text.indexOf(']', j));
+					}
+				}
+			} 
+			else {
+				regex = String.valueOf(text.charAt(2));
+			}
+			
+			text = text.substring(text.indexOf('\n') + 1);
+			return sum(splitNumbers(text, regex));
 		}
-		return sum(splitNumbers(text));
+		else if (text.contains(regex)){
+			return sum(splitNumbers(text, regex));
+		}
+		return sum(splitNumbers(text, regex));
 	}
 
 	private static int toInt(String number) {
 		return Integer.parseInt(number);
 	}
 
-	private static String[] splitNumbers(String numbers){
-		if (numbers.startsWith("//")) {
-			Matcher match;
-			match = Pattern.compile("//(.)\n(.*)").matcher(numbers);
-			match.matches();
-			return match.group(2).split(match.group(1));
-		}
-		return numbers.split(delimiter);
+	private static String[] splitNumbers(String numbers, String regex){
+		return numbers.split("\\Q" + regex + "\\E|\n"); 
 	}
 	
 	private static int sum(String[] numbers){
