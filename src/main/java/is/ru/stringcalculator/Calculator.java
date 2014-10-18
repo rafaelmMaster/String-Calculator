@@ -13,24 +13,32 @@ public class Calculator {
 			return 0;
 		}
 		if(text.startsWith("//")){
-			if(text.charAt(2) == '[') {
-				for (int j = 2; j < text.length(); j++) {
-					if (text.charAt(j) == ']') {
-						regex = text.substring(j-3, text.indexOf(']', j));
-					}
-				}
-			} 
-			else {
-				regex = String.valueOf(text.charAt(2));
-			}
-			
-			text = text.substring(text.indexOf('\n') + 1);
-			return sum(splitNumbers(text, regex));
+			return delimitersHandler(text, regex);
 		}
 		else if (text.contains(regex)){
 			return sum(splitNumbers(text, regex));
 		}
 		return sum(splitNumbers(text, regex));
+	}
+	
+	private static int delimitersHandler(String text, String regex) {
+		if(text.charAt(2) == '[') {
+			for (int j = 2; j < text.length(); j++) {
+				if (text.charAt(j) == ']') {
+					regex = text.substring(j-3, text.indexOf(']', j));
+				}
+			}
+		} 
+		else {
+			regex = String.valueOf(text.charAt(2));
+		}
+		
+		text = substringByNewLien(text);
+		return sum(splitNumbers(text, regex));
+	}
+	
+	private static String substringByNewLien(String text) {
+		return text.substring(text.indexOf('\n') + 1);
 	}
 
 	private static int toInt(String number) {
@@ -58,7 +66,7 @@ public class Calculator {
 	
 	private static boolean containsNegatives(String[] numbers) {
 		for(String num : numbers) {
-			if (toInt(num) < 0) {
+			if (isNegative(num)) {
 				return true;
 			}
 		}
