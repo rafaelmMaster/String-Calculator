@@ -72,4 +72,9 @@ public class CalculatorTest {
 		assertEquals(999, Calculator.add("1001,999"));
 	}
 
+	@Test
+	public void testDelimitersOfAnyLength() {
+		assertEquals(6, Calculator.add("//[***]\n1***2***3"));
+	}
+
 }
